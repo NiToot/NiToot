@@ -18,11 +18,15 @@
 
 ## 🚀 Featured Project
 
+<!-- FEATURED-PROJECTS:START -->
+
 ### [DormitoryManagementSystem · 宿舍管理系统](https://github.com/NiToot/DormitoryManagementSystem)
 
 基于 **Spring Boot + Vue** 的宿舍管理系统，面向后勤、宿管与学生，提供数据可视化和天气插件。
 
 [查看项目与源码 →](https://github.com/NiToot/DormitoryManagementSystem)
+
+<!-- FEATURED-PROJECTS:END -->
 
 ## 🐍 Contribution Snake
 
