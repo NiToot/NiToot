@@ -1,6 +1,10 @@
 ### Hi there 👋
 
-![亮色](https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
+  <img alt="GitHub 贡献贪吃蛇动画" src="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
+</picture>
 
 <!--
 **NiToot/NiToot** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
