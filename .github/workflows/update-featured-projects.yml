@@ -1,0 +1,88 @@
+name: Update featured projects
+
+on:
+  schedule:
+    # 每天北京时间 08:17（UTC 00:17），平台调度可能延迟。
+    - cron: '17 0 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-featured-projects.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-featured-projects
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Sync selected project metadata
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const assert = require('node:assert/strict');
+            // 手动维护展示名单；不会扫描或自动展示其他仓库。
+            const projects = [{ owner: 'NiToot', repo: 'DormitoryManagementSystem' }];
+            const start = '<!-- FEATURED-PROJECTS:START -->';
+            const end = '<!-- FEATURED-PROJECTS:END -->';
+            const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+              '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[char]));
+            function replaceSection(text, body) {
+              const a = text.indexOf(start);
+              const b = text.indexOf(end);
+              if (text.split(start).length !== 2 || text.split(end).length !== 2 || a >= b) {
+                throw new Error('README project markers are missing, duplicated, or reversed; refusing to overwrite.');
+              }
+              return text.slice(0, a + start.length) + '\n\n' + body.trim() + '\n\n' + text.slice(b);
+            }
+            // 验证只改指定区块、重复运行不改内容、异常标记不写入。
+            const sample = 'before\n' + start + '\nold\n' + end + '\nafter';
+            const expected = 'before\n' + start + '\n\nnew\n\n' + end + '\nafter';
+            assert.equal(replaceSection(sample, 'new'), expected);
+            assert.equal(replaceSection(expected, 'new'), expected);
+            assert.throws(() => replaceSection('no markers', 'new'));
+            assert.throws(() => replaceSection(sample + start, 'new'));
+            assert.throws(() => replaceSection(end + start, 'new'));
+            assert.equal(escapeHtml('<script>&'), '&lt;script&gt;&amp;');
+            const cards = [];
+            for (const project of projects) {
+              const { data: repo } = await github.rest.repos.get(project);
+              if (repo.private || repo.fork) throw new Error('Only explicitly selected public original projects may be displayed.');
+              const url = new URL(repo.html_url);
+              if (url.origin !== 'https://github.com') throw new Error('Unexpected repository URL.');
+              const pushed = repo.pushed_at ? repo.pushed_at.slice(0, 10) : '暂无';
+              cards.push([
+                '<h3><a href="' + url.href + '">' + escapeHtml(repo.name) + '</a></h3>',
+                '<p>' + escapeHtml(repo.description || '暂无项目简介。') + '</p>',
+                '<p>⭐ Stars：' + repo.stargazers_count + ' · 🍴 Forks：' + repo.forks_count +
+                  ' · 💻 ' + escapeHtml(repo.language || '未标注语言') + ' · 最近推送：' + pushed + '</p>',
+                '<p><a href="' + url.href + '">查看项目与源码 →</a></p>'
+              ].join('\n\n'));
+            }
+            const branch = context.payload.repository.default_branch;
+            const { data: file } = await github.rest.repos.getContent({ ...context.repo, path: 'README.md', ref: branch });
+            if (Array.isArray(file) || file.encoding !== 'base64') throw new Error('README must be a base64-encoded file.');
+            const original = Buffer.from(file.content, 'base64').toString('utf8');
+            const workflowUrl = 'https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/workflows/update-featured-projects.yml';
+            const body = cards.join('\n\n') + '\n\n<sub>由 GitHub Actions 每日同步 · <a href="' + workflowUrl + '">手动刷新</a></sub>';
+            const updated = replaceSection(original, body);
+            if (updated === original) {
+              core.info('Featured project metadata is unchanged; no commit needed.');
+              return;
+            }
+            // 使用最新 README 的 SHA；若同时有人编辑，GitHub 将拒绝覆盖。
+            await github.rest.repos.createOrUpdateFileContents({
+              ...context.repo, path: 'README.md', branch,
+              message: 'docs: sync featured project metadata',
+              content: Buffer.from(updated, 'utf8').toString('base64'), sha: file.sha
+            });
+            core.info('Featured project metadata updated; all other README sections preserved.');
