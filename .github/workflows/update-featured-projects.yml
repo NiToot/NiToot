@@ -72,8 +72,7 @@ jobs:
             const { data: file } = await github.rest.repos.getContent({ ...context.repo, path: 'README.md', ref: branch });
             if (Array.isArray(file) || file.encoding !== 'base64') throw new Error('README must be a base64-encoded file.');
             const original = Buffer.from(file.content, 'base64').toString('utf8');
-            const workflowUrl = 'https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/actions/workflows/update-featured-projects.yml';
-            const body = cards.join('\n\n') + '\n\n<sub>由 GitHub Actions 每日同步 · <a href="' + workflowUrl + '">手动刷新</a></sub>';
+            const body = cards.join('\n\n');
             const updated = replaceSection(original, body);
             if (updated === original) {
               core.info('Featured project metadata is unchanged; no commit needed.');
