@@ -28,8 +28,6 @@
 
 <p><a href="https://github.com/NiToot/DormitoryManagementSystem">查看项目与源码 →</a></p>
 
-<sub>由 GitHub Actions 每日同步 · <a href="https://github.com/NiToot/NiToot/actions/workflows/update-featured-projects.yml">手动刷新</a></sub>
-
 <!-- FEATURED-PROJECTS:END -->
 
 ## 🐍 Contribution Snake
