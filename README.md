@@ -1,22 +1,35 @@
-### Hi there 👋
+<p align="center">
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:38BDF8,100:8B5CF6&height=180&section=header&text=NiToot&fontSize=56&fontColor=ffffff&fontAlignY=40&desc=Build%20with%20curiosity.%20Keep%20creating.&descAlignY=65&descSize=17" alt="NiToot — Build with curiosity. Keep creating." />
+</p>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
-  <img alt="GitHub 贡献贪吃蛇动画" src="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
-</picture>
+<h2 align="center">Hi there, I'm NiToot 👋</h2>
 
-<!--
-**NiToot/NiToot** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="center">用代码把想法变成作品 · Java / Spring Boot / Vue</p>
 
-Here are some ideas to get you started:
+<p align="center">
+  <a href="https://github.com/antonkomarev/github-profile-views-counter"><img src="https://komarev.com/ghpvc/?username=NiToot&label=Profile%20views&color=8b5cf6&style=flat-square" alt="Profile views" /></a>
+</p>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🛠️ Tech Stack
+
+<p align="center">
+  <a href="https://github.com/tandpfun/skill-icons"><img src="https://skillicons.dev/icons?i=java,spring,vue&theme=dark&perline=3" alt="Java, Spring, Vue" /></a>
+</p>
+
+## 🚀 Featured Project
+
+### [DormitoryManagementSystem · 宿舍管理系统](https://github.com/NiToot/DormitoryManagementSystem)
+
+基于 **Spring Boot + Vue** 的宿舍管理系统，面向后勤、宿管与学生，提供数据可视化和天气插件。
+
+[查看项目与源码 →](https://github.com/NiToot/DormitoryManagementSystem)
+
+## 🐍 Contribution Snake
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
+    <img width="100%" alt="GitHub 贡献贪吃蛇动画" src="https://raw.githubusercontent.com/NiToot/NiToot/output/github-contribution-grid-snake.svg">
+  </picture>
+</p>
