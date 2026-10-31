@@ -24,7 +24,7 @@
 
 <p>宿舍管理系统，后勤，宿管，学生。数据可视化，天气插件。SpringBoot+Vue</p>
 
-<p>⭐ Stars：143 · 🍴 Forks：20 · 💻 Vue · 最近推送：2024-07-18</p>
+<p>⭐ Stars：143 · 🍴 Forks：20 · 💻 Java · 最近推送：2026-10-30</p>
 
 <p><a href="https://github.com/NiToot/DormitoryManagementSystem">查看项目与源码 →</a></p>
 
