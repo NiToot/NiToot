@@ -30,6 +30,10 @@
 
 <!-- FEATURED-PROJECTS:END -->
 
+## 🌐 中文汉化
+
+[CleanSweep 简体中文版](https://github.com/NiToot/CleanSweep-zh-CN) · Windows 清理工具 GUI 汉化，基于 Thomas Loupe 原作，按 GPLv3 发布。[下载运行包](https://github.com/NiToot/CleanSweep-zh-CN/releases/latest)
+
 ## 🐍 Contribution Snake
 
 <p align="center">
